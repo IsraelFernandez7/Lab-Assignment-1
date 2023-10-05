@@ -236,14 +236,22 @@ class Node{
 	   }
 	  
 	  
-	   /*
+	     /*
 	   a method to find the node in the tree
 	   with a largest key
 	   */
-	   public int getMax(Node root){
-         //implement in here
-	   }
-	   
+	   public int getMax(Node root, int key){
+                if (key > root.value)
+                    {
+                if (root.right == null)
+                {
+                    root.right = new Node(key);
+                }
+
+                root = root.right;
+            }
+                return key;
+           }
 	   
 	   
 	   /*
