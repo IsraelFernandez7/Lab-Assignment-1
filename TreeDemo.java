@@ -127,13 +127,64 @@ class Node{
           }
 	   
 	   
-	   
 	   /*
 	   post-order traversal
 	   */
 	  
-	   public void postOrderTraversal(Node root){
-         //implement in here
+	   public int[] postOrderTraversal(Node root){
+                if (root == null) return new int[] { };
+
+                Stack<Node> stack = new Stack<Node>();
+                Stack<Integer> stackCtr = new Stack<Integer>();
+                ArrayList<Integer> orderList = new ArrayList<Integer>();
+
+                stack.push(root);
+                stackCtr.push(0);
+
+                while (!stack.empty())
+                {
+                    int ctr = stackCtr.pop();
+                    Node node = stack.peek();
+
+                    if (ctr == 0)
+                    {
+                        // First visit.
+                        stackCtr.push(1);
+
+                        if (node.left != null)
+                        {
+                            stack.push(node.left);
+                            stackCtr.push(0);
+                        }
+                    }
+                    else if (ctr == 1)
+                    {
+                        // Second visit.
+                        // Left subtree done.
+                        stackCtr.push(2);
+
+                        if (node.right != null)
+                        {
+                            stack.push(node.right);
+                            stackCtr.push(0);
+                        }
+                    }
+                    else // ctr >= 2
+                    {
+                        // Third visit.
+                        // Right subtree done.
+                        stack.pop();
+                        orderList.add(node.value);
+                    }
+                }
+
+                int[] order = new int[orderList.size()];
+                for (int i = 0; i < order.length; i++)
+                {
+                    order[i] = orderList.get(i);
+                }
+
+        return order;
 		   
 	   }
 	   
