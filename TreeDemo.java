@@ -190,13 +190,29 @@ class Node{
 	   
 	   
 	   
-	   /*
+	 /*
 	   a method to find the node in the tree
 	   with a specific value
 	   */
 	   public boolean find(Node root, int key){
-		 //implement in here
-		  
+		 if(root == null)
+                {
+                   return false;
+                }
+
+                if(root.value == key)
+                {
+                     return true;
+                }
+
+                if(key < root.value)
+                {
+                   return find(root.left, key);
+                }
+                else
+                {
+                   return find(root.right, key);
+                }
 	   }
 	   
 	   
