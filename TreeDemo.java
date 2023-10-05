@@ -217,15 +217,23 @@ class Node{
 	   
 	   
 	   
+	     
 	   /*
 	   a method to find the node in the tree
 	   with a smallest key
 	   */
-	   public int getMin(Node root){
-         //implement in here
-	      
+	   public int getMin(Node root, int key){
+            if (key < root.value)
+            {
+                if (root.left == null)
+                {
+                    root.left = new Node(key);
+                }
+
+                root = root.left;
+            }
+                return key;
 	   }
-	  
 	  
 	  
 	   /*
