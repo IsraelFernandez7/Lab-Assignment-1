@@ -91,12 +91,40 @@ class Node{
 
 	   
 	   
-	   /*
+	/*
 	   in-order traversal
 	   */
-	   public void inOrderTraversal(Node root){
-	      //implement in here
-	   }
+	   public int[] inOrderTraversal(Node root){
+              if (root == null) return new int[] { };
+
+              Stack<Node> stack = new Stack<Node>();
+              ArrayList<Integer> orderList = new ArrayList<Integer>();
+
+              for (Node node = root;;)
+              {
+                  if (node == null)
+                  {
+                      if (stack.empty()) break;
+
+                      node = stack.pop();
+                      orderList.add(node.value);
+                      node = node.right;
+                  }
+                  else
+                  {
+                      stack.push(node);
+                      node = node.left;
+                  }
+              }
+
+              int[] order = new int[orderList.size()];
+              for (int i = 0; i < order.length; i++)
+              {
+                  order[i] = orderList.get(i);
+              }
+
+              return order;
+          }
 	   
 	   
 	   
